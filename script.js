@@ -1,4 +1,4 @@
-const apiUrl = 'https://sheetdb.io/api/v1/vy5o5u8lrc3b4';
+const dataUrl = 'data.json';
 
 //Use this to control whether emojis are displayed
 const useRoomButtonEmojis = true;
@@ -15,7 +15,7 @@ const allButtonHTML = useRoomButtonEmojis
 console.log('Script started');
 
 // Fetch data from the API
-fetch(apiUrl)
+fetch(dataUrl)
     .then(response => {
         console.log('Fetch response received:', response);
         if (!response.ok) {
