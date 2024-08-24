@@ -4,7 +4,7 @@ name: Update API Data
 on:
   schedule:
     - cron: '0 */2 * * *' # Runs every 2 hours
-
+  workflow_dispatch:
 jobs:
   update-data:
     runs-on: ubuntu-latest
