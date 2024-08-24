@@ -1,0 +1,30 @@
+# .github/workflows/update-data.yml
+name: Update API Data
+
+on:
+  schedule:
+    - cron: '0 */2 * * *' # Runs every 2 hours
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch API data
+        env:
+          API_KEY: ${{ secrets.API_KEY }} # Access the secret
+        run: |
+          curl https://sheetdb.io/api/v1/vy5o5u8lrc3b4 \
+            -H "Authorization: Bearer $API_KEY" \
+            -o data.json
+          
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'data.json'
+          message: 'Update API data'
+          author_name: 'GitHub Actions'
+          author_email: 'actions@github.com'
