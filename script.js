@@ -139,7 +139,6 @@ fetch(dataUrl)
             // Set headers to displayedFields for code readability
             if (!isTypeDisplayed && displayedFields.includes("Type")) {
                 displayedFields.splice(displayedFields.indexOf("Type"), 1);
-                
             }
 
             const headers = displayedFields;
