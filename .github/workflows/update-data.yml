@@ -15,9 +15,10 @@ jobs:
 
       - name: Fetch API data
         env:
-          API_KEY: ${{ secrets.API_KEY }} # Access the secret
+          API_URL: ${{ secrets.API_URL }}
+          API_KEY: ${{ secrets.API_KEY }}
         run: |
-          curl https://sheetdb.io/api/v1/vy5o5u8lrc3b4 \
+          curl $API_URL \
             -H "Authorization: Bearer $API_KEY" \
             -o data.json
           
