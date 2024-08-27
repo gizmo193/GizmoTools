@@ -82,7 +82,7 @@ body {
 
 table {
     width: 100%;
-    min-width: 600px; /* Adjust this value based on your table's content */
+    min-width: 400px; /* Adjust this value based on your table's content */
     border-collapse: collapse;
     margin: 20px 0;
     background-color: var(--table-background);
@@ -198,10 +198,6 @@ p.no-data-message {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .hide-on-mobile {
-        display: none;
-    }
-    
     body {
         padding: 10px;
     }
@@ -233,4 +229,3 @@ p.no-data-message {
         font-size: 0.8em;
     }
 }
-
