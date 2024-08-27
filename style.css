@@ -198,6 +198,10 @@ p.no-data-message {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none;
+    }
+    
     body {
         padding: 10px;
     }
@@ -229,3 +233,4 @@ p.no-data-message {
         font-size: 0.8em;
     }
 }
+
