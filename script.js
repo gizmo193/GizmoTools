@@ -15,7 +15,7 @@ console.log('Script started');
 
 // Function to check if Type should be displayed
 function shouldDisplayType() {
-    return window.innerWidth > 600;
+    return window.innerWidth > 768;
 }
 
 // Function to update displayedFields based on screen size
