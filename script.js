@@ -139,10 +139,13 @@ fetch(dataUrl)
             // Set headers to displayedFields for code readability
             if (!isTypeDisplayed && displayedFields.includes("Type")) {
                 const headers = displayedFields.splice(displayedFields.indexOf("Type"), 1);
+                
             } else {
                 const headers = displayedFields;
             };
 
+            console.log(headers);
+            
             // Append header row
             thead.append("tr")
                 .selectAll("th")
