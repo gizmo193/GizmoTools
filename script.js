@@ -6,8 +6,8 @@ const useTableEmojis = true
 
 //Use this to control which fields are displayed on the table.
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
-const displayedFields = ['Tool Name', 'Type', 'Room', 'Availability'];
-
+let displayedFields = ['Tool Name', 'Type', 'Room', 'Availability'];
+let isTypeDisplayed = screen.availWidth > 600;
 
 const allButtonHTML = useRoomButtonEmojis
     ? `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
@@ -137,7 +137,11 @@ fetch(dataUrl)
             console.log('New table created');
 
             // Set headers to displayedFields for code readability
-            const headers = displayedFields;
+            if (!isTypeDisplayed && displayedFields.includes("Type")) {
+                const headers = displayedFields.splice(displayedFields.indexOf("Type"), 1);
+            } else {
+                const headers = displayedFields;
+            };
 
             // Append header row
             thead.append("tr")
