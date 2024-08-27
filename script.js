@@ -2,17 +2,52 @@ const dataUrl = 'data.json';
 
 //Use this to control whether emojis are displayed
 const useRoomButtonEmojis = true;
-const useTableEmojis = true
+const useTableEmojis = true;
 
 //Use this to control which fields are displayed on the table.
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
 let displayedFields = ['Tool Name', 'Type', 'Room', 'Availability'];
-let isTypeDisplayed = screen.availWidth > 600;
 
 const allButtonHTML = useRoomButtonEmojis
     ? `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
     : `<div>All</div>`;
 console.log('Script started');
+
+// Function to check if Type should be displayed
+function shouldDisplayType() {
+    return window.innerWidth > 768;
+}
+
+// Function to update displayedFields based on screen size
+function updateDisplayedFields() {
+    const isTypeDisplayed = shouldDisplayType();
+    if (!isTypeDisplayed && displayedFields.includes("Type")) {
+        displayedFields = displayedFields.filter(field => field !== "Type");
+    } else if (isTypeDisplayed && !displayedFields.includes("Type")) {
+        displayedFields = ['Tool Name', 'Type', 'Room', 'Availability'];
+    }
+}
+
+// Function to toggle the visibility of the "Type" column
+function toggleTypeColumn() {
+    updateDisplayedFields();
+    const typeHeaders = document.querySelectorAll('th, td');
+    const isTypeDisplayed = shouldDisplayType();
+
+    typeHeaders.forEach((element, index) => {
+        if (element.textContent === "Type" || (element.parentElement.children[1] === element && !isTypeDisplayed)) {
+            if (isTypeDisplayed) {
+                element.classList.remove('hide-on-mobile');
+            } else {
+                element.classList.add('hide-on-mobile');
+            }
+        }
+    });
+}
+
+// Call the function on page load and window resize
+window.addEventListener('load', toggleTypeColumn);
+window.addEventListener('resize', toggleTypeColumn);
 
 // Fetch data from the API
 fetch(dataUrl)
@@ -128,6 +163,9 @@ fetch(dataUrl)
                 return;
             }
 
+            // Update displayedFields before creating the table
+            updateDisplayedFields();
+
             // Create a new table
             const table = d3.select("#table-container").append("table")
                 .attr("class", "table-pop-in"); // Add the animation class here
@@ -137,13 +175,7 @@ fetch(dataUrl)
             console.log('New table created');
 
             // Set headers to displayedFields for code readability
-            if (!isTypeDisplayed && displayedFields.includes("Type")) {
-                displayedFields.splice(displayedFields.indexOf("Type"), 1);
-            }
-
             const headers = displayedFields;
-
-            console.log(headers);
 
             // Append header row
             thead.append("tr")
@@ -187,11 +219,13 @@ fetch(dataUrl)
                         const textOnly = match ? match[0].trim() : '';
                         d.value = textOnly; // Assign the new value to d.value
                     }
-
                 })
                 .text(d => d.value);
 
             console.log('Table cells appended and classes set');
+
+            // Apply the toggle function after creating the table
+            toggleTypeColumn();
 
             // Remove the table-pop-in class after animation ends to allow re-triggering
             table.on('transitionend', function() {
