@@ -2,7 +2,7 @@ const dataUrl = 'data.json';
 
 //Use this to control whether emojis are displayed
 const useRoomButtonEmojis = true;
-const useTableEmojis = true;
+const useTableEmojis = true
 
 //Use this to control which fields are displayed on the table.
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
@@ -13,24 +13,6 @@ const allButtonHTML = useRoomButtonEmojis
     ? `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
     : `<div>All</div>`;
 console.log('Script started');
-
-// Function to toggle the visibility of the "Type" column
-function toggleTypeColumn() {
-    const typeHeaders = document.querySelectorAll('th:nth-child(2), td:nth-child(2)');
-    const isMobile = window.innerWidth <= 768;
-    
-    typeHeaders.forEach(element => {
-        if (isMobile) {
-            element.classList.add('hide-on-mobile');
-        } else {
-            element.classList.remove('hide-on-mobile');
-        }
-    });
-}
-
-// Call the function on page load and window resize
-window.addEventListener('load', toggleTypeColumn);
-window.addEventListener('resize', toggleTypeColumn);
 
 // Fetch data from the API
 fetch(dataUrl)
@@ -199,13 +181,11 @@ fetch(dataUrl)
                         const textOnly = match ? match[0].trim() : '';
                         d.value = textOnly; // Assign the new value to d.value
                     }
+
                 })
                 .text(d => d.value);
 
             console.log('Table cells appended and classes set');
-
-            // Apply the toggle function after creating the table
-            toggleTypeColumn();
 
             // Remove the table-pop-in class after animation ends to allow re-triggering
             table.on('transitionend', function() {
