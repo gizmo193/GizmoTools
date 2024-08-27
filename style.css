@@ -42,6 +42,7 @@ body {
     flex-wrap: wrap;
     margin-bottom: 20px;
     gap: 10px;
+    max-width: 800px;
 }
 
 .room-button {
@@ -197,7 +198,7 @@ p.no-data-message {
     .hide-on-mobile {
         display: none;
     }
-    
+
     body {
         padding: 10px;
     }
