@@ -74,20 +74,15 @@ body {
 }
 
 /* Table Styles */
-#table-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
 table {
     width: 100%;
-    min-width: 600px; /* Adjust this value based on your table's content */
     border-collapse: collapse;
     margin: 20px 0;
     background-color: var(--table-background);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    overflow-x: auto;
+    display: block;
 }
 
 /* Table Animation */
@@ -117,6 +112,7 @@ td {
     border: 2px solid var(--border-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    min-width: 100px;
 }
 
 th {
