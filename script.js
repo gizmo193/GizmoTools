@@ -2,9 +2,9 @@ const dataUrl = 'data.json';
 
 //Use this to control whether emojis are displayed
 const useRoomButtonEmojis = false;
-const useTableEmojis = true;
-const useFontAwesomeIcons = true;
-
+const useTableEmojis = false;
+const useRoomButtonIcons = true;
+const useTableIcons = true;
 
 //Use this to control which fields are displayed on the table.
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
@@ -15,7 +15,7 @@ const allButtonHTML = () => {
         console.log("Using Room Button Emojis")
         return `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
     } else if (!useRoomButtonEmojis) {
-        if (useFontAwesomeIcons) {
+        if (useRoomButtonIcons) {
             return `<div style="font-size: 2em; line-height: 1;"><i class="fa-solid fa-house"></i></div><div>All</div>`
         } else {
             return `<div>All</div>`
@@ -172,7 +172,7 @@ fetch(dataUrl)
                     } else {
                         return d; // If no emoji is found, just return the room name
                     }
-                } else if (useFontAwesomeIcons) {
+                } else if (useRoomButtonIcons) {
                     console.log('Room buttons:' + fontIcon(match[1].toLowerCase().replaceAll(" ", "")))
                     return `<div style="font-size: 2em; line-height: 1;">${fontIcon(match[1].toLowerCase().replaceAll(" ", ""))}</div><div>${match[1]}</div>`
                 } else {
@@ -267,6 +267,13 @@ fetch(dataUrl)
                         const match = value.match(/^[\p{L}\s]+/u);
                         const textOnly = match ? match[0].trim() : '';
                         d.value = textOnly; // Assign the new value to d.value
+                    }
+
+                    if (useTableIcons && d.header === "Room") {
+                        const value = String(d.value);
+                        const match = value.match(/^[\p{L}\s]+/u);
+                        const textOnly = match ? match[0].trim() : '';
+                        d.value = textOnly + fontIcon(textOnly.toLowerCase().replaceAll(" ", ""));
                     }
                 })
                 .text(d => d.value);
