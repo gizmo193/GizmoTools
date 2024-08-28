@@ -168,10 +168,9 @@ fetch(dataUrl)
                 const match = d.match(/(.*?)(\p{Emoji_Presentation})/u);
                 if (useRoomButtonEmojis) {
                     if (match) {
-                        if(useFontAwesomeIcons) {
-                            return `<div style="font-size: 2em; line-height: 1;">${fontIcon(match[1].toLowerCase().replaceAll(" ", ""))}</div><div>${match[1]}</div>`
-                        }
                         return `<div style="font-size: 2em; line-height: 1;">${match[2]}</div><div>${match[1]}</div>`;
+                    } else if (useFontAwesomeIcons && match) {
+                        return `<div style="font-size: 2em; line-height: 1;">${fontIcon(match[1].toLowerCase().replaceAll(" ", ""))}</div><div>${match[1]}</div>`
                     } else {
                         return d; // If no emoji is found, just return the room name
                     }
