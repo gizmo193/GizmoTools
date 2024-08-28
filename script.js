@@ -23,7 +23,7 @@ const allButtonHTML = () => {
     }
 }
 
-const fontIcon = (room) {
+const fontIcon = (room) => {
     let iconClass;
     switch (room) {
         case 'claystudio':
