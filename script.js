@@ -23,6 +23,39 @@ const allButtonHTML = () => {
     }
 }
 
+const fontIcon = (room) {
+    let iconClass;
+    switch (room) {
+        case 'claystudio':
+            iconClass = '<i class="fa-solid fa-fire"></i>'
+            break;
+        case 'creativeartslab':
+            iconClass = '<i class="fa-solid fa-palette"></i>'
+            break;
+        case 'electronicslab':
+            iconClass = '<i class="fa-solid fa-bolt"></i>'
+            break;
+        case 'foundry/forge':
+            iconClass = '<i class="fa-solid fa-weight-hanging"></i>'
+            break;
+        case 'jewelry&lapidary':
+            iconClass = '<i class="fa-solid fa-gem"></i>'
+            break;
+        case 'lasercutters':
+            iconClass = '<i class="fa-solid fa-lightbulb"></i>'
+            break;
+        case 'metalshop':
+            iconClass = '<i class="fa-solid fa-screwdriver-wrench"></i>'
+            break;
+        case 'weldingshop':
+            iconClass = '<i class="fa-solid fa-gears"></i>'
+            break;
+        case 'woodshop':
+            iconClass = '<i class="fa-solid fa-tree"></i>'
+            break;
+    }
+}
+
 console.log('Script started');
 
 // Function to check if Type should be displayed
@@ -134,6 +167,9 @@ fetch(dataUrl)
                 const match = d.match(/(.*?)(\p{Emoji_Presentation})/u);
                 if (useRoomButtonEmojis) {
                     if (match) {
+                        if(useFontAwesomeIcons) {
+                            return `<div style="font-size: 2em; line-height: 1;">${fontIcon(match[1].toLowerCase().replaceAll(" ", ""))}</div><div>${match[1]}</div>`
+                        }
                         return `<div style="font-size: 2em; line-height: 1;">${match[2]}</div><div>${match[1]}</div>`;
                     } else {
                         return d; // If no emoji is found, just return the room name
