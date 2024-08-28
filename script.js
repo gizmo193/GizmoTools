@@ -12,6 +12,7 @@ let displayedFields = ['Tool Name', 'Type', 'Room', 'Availability'];
 
 const allButtonHTML = () => {
     if (useRoomButtonEmojis) {
+        console.log("Using Room Button Emojis")
         return `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
     } else if (!useRoomButtonEmojis) {
         if (useFontAwesomeIcons) {
