@@ -273,10 +273,10 @@ fetch(dataUrl)
                         const value = String(d.value);
                         const match = value.match(/^[\p{L}\s]+/u);
                         const textOnly = match ? match[0].trim() : '';
-                        d.value = textOnly + fontIcon(textOnly.toLowerCase().replaceAll(" ", ""));
+                        d.value = `<p>${textOnly}</p>` + fontIcon(textOnly.toLowerCase().replaceAll(" ", ""));
                     }
                 })
-                .text(d => d.value);
+                .html(d => d.value);
 
             console.log('Table cells appended and classes set');
 
