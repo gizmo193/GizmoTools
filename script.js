@@ -273,7 +273,7 @@ fetch(dataUrl)
                         const value = String(d.value);
                         const match = value.match(/^[\p{L}\s]+/u);
                         const textOnly = match ? match[0].trim() : '';
-                        d.value = `<p>${textOnly}</p>${fontIcon(textOnly.toLowerCase().replaceAll(" ", ""))}`;
+                        d.value = `<p>${textOnly}${fontIcon(textOnly.toLowerCase().replaceAll(" ", ""))}</p>`;
                     }
                 })
                 .html(d => d.value);
