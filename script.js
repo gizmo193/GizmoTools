@@ -54,6 +54,7 @@ const fontIcon = (room) => {
             iconClass = '<i class="fa-solid fa-tree"></i>'
             break;
     }
+    return iconClass;
 }
 
 console.log('Script started');
