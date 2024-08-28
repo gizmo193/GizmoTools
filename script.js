@@ -169,12 +169,12 @@ fetch(dataUrl)
                 if (useRoomButtonEmojis) {
                     if (match) {
                         return `<div style="font-size: 2em; line-height: 1;">${match[2]}</div><div>${match[1]}</div>`;
-                    } else if (useFontAwesomeIcons && match) {
-                        console.log('Room buttons:' + fontIcon(match[1].toLowerCase().replaceAll(" ", "")))
-                        return `<div style="font-size: 2em; line-height: 1;">${fontIcon(match[1].toLowerCase().replaceAll(" ", ""))}</div><div>${match[1]}</div>`
                     } else {
                         return d; // If no emoji is found, just return the room name
                     }
+                } else if (useFontAwesomeIcons && match) {
+                    console.log('Room buttons:' + fontIcon(match[1].toLowerCase().replaceAll(" ", "")))
+                    return `<div style="font-size: 2em; line-height: 1;">${fontIcon(match[1].toLowerCase().replaceAll(" ", ""))}</div><div>${match[1]}</div>`
                 } else {
                     return `<div>${match[1]}</div>`
                 }
