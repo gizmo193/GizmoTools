@@ -3,11 +3,22 @@ const dataUrl = 'data.json';
 //Use this to control whether emojis are displayed
 const useRoomButtonEmojis = true;
 const useTableEmojis = true;
+const useFontAwesomeIcons = false;
+
 
 //Use this to control which fields are displayed on the table.
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
 let displayedFields = ['Tool Name', 'Type', 'Room', 'Availability'];
 
+const allButtonHTML = () => {
+    if (useRoomButtonEmojis) {
+        return `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
+    } else if (!useRoomButtonEmojis) {
+        if (useFontAwesomeIcons) {
+            return `<div style="font-size: 2em; line-height: 1;"><i class="fa-solid fa-house"></i></div><div>All</div>`
+        }
+    }
+}
 const allButtonHTML = useRoomButtonEmojis
     ? `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
     : `<div>All</div>`;
