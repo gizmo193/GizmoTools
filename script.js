@@ -271,9 +271,8 @@ fetch(dataUrl)
 
                     if (useTableIcons && d.header === "Room") {
                         const value = String(d.value).trim();
-                        const emojiRegex = /[\p{Emoji}\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu;
                         // Remove existing emojis from the string
-                        const cleanedValue = value.replace(emojiRegex, '').trim();
+                        const cleanedValue = value.slice(0, -1).trim();
                         // Get the appropriate FontAwesome icon
                         const icon = fontIcon(cleanedValue.toLowerCase().replaceAll(" ", ""));
                         // Combine the cleaned text and FontAwesome icon into HTML
