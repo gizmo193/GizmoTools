@@ -8,11 +8,6 @@ const useTableEmojis = true;
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
 let displayedFields = ['Tool Name', 'Type', 'Room', 'Availability'];
 
-<<<<<<< Updated upstream
-const allButtonHTML = useRoomButtonEmojis
-    ? `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
-    : `<div>All</div>`;
-=======
 const allButtonHTML = () => {
     if (useRoomButtonEmojis) {
         return `<div style="font-size: 2em; line-height: 1;">&#x1F3E0;</div><div>All</div>`
@@ -25,7 +20,6 @@ const allButtonHTML = () => {
     }
 }
 
->>>>>>> Stashed changes
 console.log('Script started');
 
 // Function to check if Type should be displayed
