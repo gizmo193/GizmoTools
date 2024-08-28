@@ -270,8 +270,7 @@ fetch(dataUrl)
                     }
 
                     if (useTableIcons && d.header === "Room") {
-                        const value = String(d.value).trim(); // Get the room name and trim any extra whitespace
-                        
+                        const value = String(d.value).trim();
                         // Remove existing emojis from the string
                         const cleanedValue = value.replace(/[\p{Emoji_Presentation}]/gu, '').trim();
                         // Get the appropriate FontAwesome icon
