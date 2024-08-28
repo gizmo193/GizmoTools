@@ -274,7 +274,7 @@ fetch(dataUrl)
                         // Remove existing emojis from the string
                         const match = value.match(/(.*?)(\p{Emoji_Presentation})/u);
                         // Get the appropriate FontAwesome icon
-                        const icon = fontIcon(cleanedValue.toLowerCase().replaceAll(" ", ""));
+                        const icon = fontIcon(match[1].toLowerCase().replaceAll(" ", ""));
                         // Combine the cleaned text and FontAwesome icon into HTML
                         d.value = `<p>${match[1]} ${icon}</p>`;
                     }
