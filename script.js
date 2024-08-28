@@ -1,9 +1,9 @@
 const dataUrl = 'data.json';
 
 //Use this to control whether emojis are displayed
-const useRoomButtonEmojis = true;
+const useRoomButtonEmojis = false;
 const useTableEmojis = true;
-const useFontAwesomeIcons = false;
+const useFontAwesomeIcons = true;
 
 
 //Use this to control which fields are displayed on the table.
