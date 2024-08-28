@@ -271,7 +271,7 @@ fetch(dataUrl)
 
                     if (useTableIcons && d.header === "Room") {
                         const value = String(d.value);
-                        const match = value.match(/^[\p{L}\s]+/u);
+                        const match = value.match(/(.*?)(\p{Emoji_Presentation})/u);
                         const textOnly = match ? match[0].trim() : '';
                         d.value = `<p>${textOnly}${fontIcon(textOnly.toLowerCase().replaceAll(" ", ""))}</p>`;
                     }
