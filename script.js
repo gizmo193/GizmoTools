@@ -3,6 +3,8 @@ const dataUrl = 'data.json';
 //Use this to control whether emojis are displayed
 const useRoomButtonEmojis = true;
 const useTableEmojis = true;
+const useFontAwesomeIcons = false;
+
 
 //Use this to control which fields are displayed on the table.
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
