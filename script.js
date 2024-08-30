@@ -268,7 +268,7 @@ fetch(dataUrl)
                 // Handle Room
                 if (d.header === "Room") {
                     console.log('Room cell value:', d.value);
-                    if (!useTableEmojis) {
+                    if (!useTableEmojis && !useTableIcons) {
                         // Extract text-only part if emojis are not used
                         const value = String(d.value);
                         const match = value.match(/^[\p{L}\s]+/u);
@@ -278,7 +278,7 @@ fetch(dataUrl)
                     
                     if (useTableIcons) {
                         // Clean the room name and get the appropriate icon
-                        const cleanedName = String(d.value).slice(0,-1).trim();
+                        const cleanedName = String(d.value).replace(/[\p{Emoji}\p{Extended_Pictographic}]/gu, '').trim();
                         console.log(cleanedName);
                         const icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
                         d.value = `<p>${cleanedName} ${icon}</p>`;
