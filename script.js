@@ -262,42 +262,28 @@ fetch(dataUrl)
                             cell.classed('unavailable', true);
                         }
                     }
-                    if (!useTableEmojis && d.header === "Room") {
-                        const value = String(d.value);
-                        const match = value.match(/^[\p{L}\s]+/u);
-                        const textOnly = match ? match[0].trim() : '';
-                        d.value = textOnly; // Assign the new value to d.value
-                    }
+                    
 
+                    
                     if (d.header === "Room") {
-                        const originalValue = d.value;
-                        console.log("Original Room value:", originalValue);
-                    
-                        // Find the matching room key
-                        const matchedRoomKey = roomKeys.find(key => key.startsWith(originalValue.replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim()));
-                        
-                        if (matchedRoomKey) {
-                            // Remove emoji from the matched room key
-                            const cleanedName = matchedRoomKey.replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
-                            console.log("Cleaned Room name:", cleanedName);
-                    
-                            if (useTableIcons) {
-                                // Get the appropriate FontAwesome icon
-                                const icon = fontIcon(cleanedName);
-                                console.log("Generated icon:", icon);
-                    
-                                // Combine the cleaned text and FontAwesome icon into HTML
-                                d.value = `<p>${cleanedName} ${icon || ''}</p>`;
-                            } else {
-                                d.value = cleanedName;
+                        if (!useTableEmojis) {
+                            const value = String(d.value);
+                            const match = value.match(/^[\p{L}\s]+/u);
+                            const textOnly = match ? match[0].trim() : '';
+                            d.value = textOnly; // Assign the new value to d.value
+                        } else if (useTableIcons) {
+                            // Remove existing emojis from the string while keeping the full name
+                            const cleanedName = d.value.replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
+                            
+                            // Get the appropriate FontAwesome icon
+                            const icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
+                            
+                            // Combine the cleaned text and FontAwesome icon into HTML
+                            d.value = `<p>${cleanedName} ${icon}</p>`;
+                            if (cleanedName.startsWith("J")) {
+                                console.log(d.value);
                             }
-                        } else {
-                            console.log("No matching room key found for:", originalValue);
-                            // If no match is found, use the original value
-                            d.value = originalValue;
                         }
-                    
-                        console.log("Final Room value:", d.value);
                     }
                 })
                 .html(d => d.value);
