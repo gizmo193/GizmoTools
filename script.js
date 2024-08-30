@@ -246,46 +246,44 @@ fetch(dataUrl)
 
             // Append cells to rows
             rows.selectAll("td")
-                .data(d => headers.map(header => ({ header, value: d[header] })))
-                .enter()
-                .append("td")
-                .each(function(d) {
-                    if (d.header === "Availability") {
-                        const cell = d3.select(this);
-                        const value = String(d.value).toLowerCase().trim();
-                        console.log('Available cell value:', value);
-                        if (value === 'available') {
-                            cell.classed('available', true);
-                        } else if (value === 'staff only') {
-                            cell.classed('staff-only', true);
-                        } else if (value === 'unavailable') {
-                            cell.classed('unavailable', true);
-                        }
+            .data(d => headers.map(header => ({ header, value: d[header] })))
+            .enter()
+            .append("td")
+            .each(function(d) {
+                const cell = d3.select(this);
+                
+                // Handle Availability
+                if (d.header === "Availability") {
+                    const value = String(d.value).toLowerCase().trim();
+                    console.log('Available cell value:', value);
+                    if (value === 'available') {
+                        cell.classed('available', true);
+                    } else if (value === 'staff only') {
+                        cell.classed('staff-only', true);
+                    } else if (value === 'unavailable') {
+                        cell.classed('unavailable', true);
                     }
-                    
-
-                    
-                    if (d.header === "Room") {
-
-                        if (!useTableEmojis) {
-                            const value = String(d.value);
-                            const match = value.match(/^[\p{L}\s]+/u);
-                            const textOnly = match ? match[0].trim() : '';
-                            d.value = textOnly; // Assign the new value to d.value
-                        } else if (useTableIcons) {
-                            // Remove existing emojis from the string while keeping the full name
-                            const cleanedName = d.value.replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
-                            
-                            // Get the appropriate FontAwesome icon
-                            const icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
-                            
-                            // Combine the cleaned text and FontAwesome icon into HTML
-                            d.value = `<p>${cleanedName} ${icon}</p>`;
-                            console.log(d.value);
-                        }
+                }
+                
+                // Handle Room
+                if (d.header === "Room") {
+                    if (!useTableEmojis) {
+                        // Extract text-only part if emojis are not used
+                        const value = String(d.value);
+                        const match = value.match(/^[\p{L}\s]+/u);
+                        const textOnly = match ? match[0].trim() : '';
+                        d.value = textOnly;
+                    } else if (useTableIcons) {
+                        // Clean the room name and get the appropriate icon
+                        const cleanedName = String(d.value).replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
+                        const icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
+                        d.value = `<p>${cleanedName} ${icon}</p>`;
+                        console.log(d.value);
                     }
-                })
-                .html(d => d.value);
+                }
+            })
+            .html(d => d.value);
+
 
             console.log('Table cells appended and classes set');
 
