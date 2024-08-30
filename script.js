@@ -278,7 +278,7 @@ fetch(dataUrl)
                     
                     if (useTableIcons) {
                         // Clean the room name and get the appropriate icon
-                        const cleanedName = String(d.value).replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
+                        const cleanedName = String(d.value).replace(/[\p{Emoji}\p{Extended_Pictographic}]/gu, '').trim();
                         const icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
                         d.value = `<p>${cleanedName} ${icon}</p>`;
                         console.log(d.value);
