@@ -274,7 +274,9 @@ fetch(dataUrl)
                         const match = value.match(/^[\p{L}\s]+/u);
                         const textOnly = match ? match[0].trim() : '';
                         d.value = textOnly;
-                    } else if (useTableIcons) {
+                    }
+                    
+                    if (useTableIcons) {
                         // Clean the room name and get the appropriate icon
                         const cleanedName = String(d.value).replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
                         const icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
