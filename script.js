@@ -269,26 +269,35 @@ fetch(dataUrl)
                         d.value = textOnly; // Assign the new value to d.value
                     }
 
-                    if (useTableIcons && d.header === "Room") {
-                        console.log("Original value:", d.value); // Debug log
+                    if (d.header === "Room") {
+                        const originalValue = d.value;
+                        console.log("Original Room value:", originalValue);
                     
-                        // Remove existing emojis from the string while keeping the full name
-                        const cleanedName = d.value.replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
-                        console.log("Cleaned name:", cleanedName); // Debug log
+                        // Find the matching room key
+                        const matchedRoomKey = roomKeys.find(key => key.startsWith(originalValue.replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim()));
+                        
+                        if (matchedRoomKey) {
+                            // Remove emoji from the matched room key
+                            const cleanedName = matchedRoomKey.replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
+                            console.log("Cleaned Room name:", cleanedName);
                     
-                        // Get the appropriate FontAwesome icon
-                        let icon;
-                        try {
-                            icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
-                        } catch (error) {
-                            console.error("Error in fontIcon:", error); // Log any errors
-                            icon = ""; // Fallback to empty string if there's an error
+                            if (useTableIcons) {
+                                // Get the appropriate FontAwesome icon
+                                const icon = fontIcon(cleanedName);
+                                console.log("Generated icon:", icon);
+                    
+                                // Combine the cleaned text and FontAwesome icon into HTML
+                                d.value = `<p>${cleanedName} ${icon || ''}</p>`;
+                            } else {
+                                d.value = cleanedName;
+                            }
+                        } else {
+                            console.log("No matching room key found for:", originalValue);
+                            // If no match is found, use the original value
+                            d.value = originalValue;
                         }
-                        console.log("Generated icon:", icon); // Debug log
                     
-                        // Combine the cleaned text and FontAwesome icon into HTML
-                        d.value = `<p>${cleanedName} ${icon || ''}</p>`;
-                        console.log("Final value:", d.value); // Debug log
+                        console.log("Final Room value:", d.value);
                     }
                 })
                 .html(d => d.value);
