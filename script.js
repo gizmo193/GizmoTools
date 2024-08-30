@@ -270,15 +270,25 @@ fetch(dataUrl)
                     }
 
                     if (useTableIcons && d.header === "Room") {
+                        console.log("Original value:", d.value); // Debug log
+                    
                         // Remove existing emojis from the string while keeping the full name
                         const cleanedName = d.value.replace(/\s*[\p{Emoji_Presentation}]+$/u, '').trim();
-                        
+                        console.log("Cleaned name:", cleanedName); // Debug log
+                    
                         // Get the appropriate FontAwesome icon
-                        const icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
-                        
+                        let icon;
+                        try {
+                            icon = fontIcon(cleanedName.toLowerCase().replaceAll(" ", ""));
+                        } catch (error) {
+                            console.error("Error in fontIcon:", error); // Log any errors
+                            icon = ""; // Fallback to empty string if there's an error
+                        }
+                        console.log("Generated icon:", icon); // Debug log
+                    
                         // Combine the cleaned text and FontAwesome icon into HTML
-                        d.value = `<p>${cleanedName} ${icon}</p>`;
-                        console.log(d.value);
+                        d.value = `<p>${cleanedName} ${icon || ''}</p>`;
+                        console.log("Final value:", d.value); // Debug log
                     }
                 })
                 .html(d => d.value);
