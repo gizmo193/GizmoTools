@@ -266,6 +266,7 @@ fetch(dataUrl)
 
                     
                     if (d.header === "Room") {
+
                         if (!useTableEmojis) {
                             const value = String(d.value);
                             const match = value.match(/^[\p{L}\s]+/u);
@@ -280,9 +281,7 @@ fetch(dataUrl)
                             
                             // Combine the cleaned text and FontAwesome icon into HTML
                             d.value = `<p>${cleanedName} ${icon}</p>`;
-                            if (cleanedName.startsWith("J")) {
-                                console.log(d.value);
-                            }
+                            console.log(d.value);
                         }
                     }
                 })
