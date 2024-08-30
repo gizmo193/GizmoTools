@@ -271,8 +271,7 @@ fetch(dataUrl)
                     if (!useTableEmojis && !useTableIcons) {
                         // Extract text-only part if emojis are not used
                         const value = String(d.value);
-                        const match = value.match(/^[\p{L}\s]+/u);
-                        const textOnly = match ? match[0].trim() : '';
+                        const textOnly = value.replace(/[\p{Emoji}\p{Extended_Pictographic}]/gu, '').trim();
                         d.value = textOnly;
                     }
                     
