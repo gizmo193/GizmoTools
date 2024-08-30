@@ -278,6 +278,7 @@ fetch(dataUrl)
                         
                         // Combine the cleaned text and FontAwesome icon into HTML
                         d.value = `<p>${cleanedName} ${icon}</p>`;
+                        console.log(d.value);
                     }
                 })
                 .html(d => d.value);
