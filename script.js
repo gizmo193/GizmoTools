@@ -1,10 +1,10 @@
 const dataUrl = 'data.json';
 
 //Use this to control whether emojis are displayed
-const useRoomButtonEmojis = false;
-const useTableEmojis = false;
-const useRoomButtonIcons = true;
-const useTableIcons = true;
+const useRoomButtonEmojis = true;
+const useTableEmojis = true;
+const useRoomButtonIcons = false;
+const useTableIcons = false;
 
 //Use this to control which fields are displayed on the table.
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
