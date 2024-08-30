@@ -1,10 +1,10 @@
 const dataUrl = 'data.json';
 
 //Use this to control whether emojis are displayed
-const useRoomButtonEmojis = true;
-const useTableEmojis = true;
-const useRoomButtonIcons = false;
-const useTableIcons = false;
+const useRoomButtonEmojis = false;
+const useTableEmojis = false;
+const useRoomButtonIcons = true;
+const useTableIcons = true;
 
 //Use this to control which fields are displayed on the table.
 //Default: ['Tool Name', 'Type', 'Room', 'Availability']
@@ -267,6 +267,7 @@ fetch(dataUrl)
                 
                 // Handle Room
                 if (d.header === "Room") {
+                    console.log('Room cell value:', d.value);
                     if (!useTableEmojis) {
                         // Extract text-only part if emojis are not used
                         const value = String(d.value);
