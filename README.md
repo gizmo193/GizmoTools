@@ -1,7 +1,3 @@
-Here's a well-structured `README.md` for your project, detailing how to use and maintain your GitHub Pages-hosted web app.
-
----
-
 # GizmoTools
 
 Welcome to **GizmoTools**! This web app is hosted on GitHub Pages and provides a dynamic, interactive table of rooms sourced from a Google Sheet. The application includes search and room sorting features and updates automatically to reflect the current data in the spreadsheet.
