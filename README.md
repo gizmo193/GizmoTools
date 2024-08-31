@@ -43,6 +43,3 @@ To display a new field called "Uptime" in the table, update the `displayedFields
 ```javascript
 let displayedFields = ['Tool Name', 'Type', 'Room', 'Availability', 'Uptime'];
 ```
----
-
-Feel free to modify any sections according to your specific needs or preferences!
